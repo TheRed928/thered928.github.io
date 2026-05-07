@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#page-container,
+#panel {
+  height: 100%;
+}
+#left-panel {
+  height: 900px;
+}
+#bottom-panel {
+  z-index: 1;
+  display: flex;
+  position: fixed;
+  margin-bottom: 0;
+  height: 50px;
+  width: 100%;
+  background-color: darkgreen;
+}

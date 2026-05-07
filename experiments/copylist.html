@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Full transparency, this shit was made by ChatGPT. -->
+<!-- You right now (probably): https://imgflip.com/i/1pzinj -->
+<!-- I'm using this for learning purposes. -->
+<html>
+  <head>
+	  <meta charset="UTF-8">
+	  <title>Copyable List</title>
+	  <meta name="description" content="">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/resources/favicon.png">
+	  <link rel="stylesheet" href="/experiments/copylist.css">
+  </head>
+  <body>
+    <h1>Name List Generator</h1>
+    <input id="nameInput" type="text" placeholder="Enter names separated by spaces...">
+    <div class="list" id="list">
+
+    </div>
+    <script>
+    const input = document.getElementById('nameInput');
+    const list = document.getElementById('list');
+
+    let lastActiveItem = null;
+
+    input.addEventListener('input', () => {
+      const names = input.value.trim().split(/\s+/);
+      list.innerHTML = '';
+      lastActiveItem = null;
+
+      names.forEach(name => {
+        if (!name) return;
+
+        const item = document.createElement('div');
+        item.className = 'item';
+
+        const span = document.createElement('span');
+        span.textContent = name;
+
+        const button = document.createElement('button');
+        button.textContent = 'Copy';
+        button.onclick = () => {
+          navigator.clipboard.writeText(name);
+
+          if (lastActiveItem) {
+            lastActiveItem.classList.remove('active');
+          }
+
+          item.classList.add('active');
+          lastActiveItem = item;
+
+          button.textContent = 'Copied!';
+          setTimeout(() => button.textContent = 'Copy', 1000);
+        };
+
+        item.appendChild(span);
+        item.appendChild(button);
+        list.appendChild(item);
+      });
+    });
+  </script>
+  </body>
+</html>
